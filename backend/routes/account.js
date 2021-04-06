@@ -10,7 +10,7 @@ router.post('/signup', async (req, res, next) => {
     if (err) next(new Error('Failure signing up'))
     else {
       req.session.username = username
-      res.send(`${username} has been added to the DB`)
+      res.send('success')
     }
   })
 })
@@ -22,7 +22,7 @@ router.post('/login', async (req, res, next) => {
     else if (!data) res.send('The username and password are not found')
     else {
       req.session.username = username
-      res.send(`${username} IS LOGGED IN`)
+      res.send('success')
     }
   })
 })

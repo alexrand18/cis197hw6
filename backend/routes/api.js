@@ -15,7 +15,7 @@ router.post('/questions/add', isAuthenticated, async (req, res, next) => {
   const { questionText } = req.body
   Question.create({ author: req.session.username, questionText }, (err, data) => {
     if (err) next(new Error('Error adding questions'))
-    else res.send(`${req.session.username} has added the question ${questionText} to the DB`)
+    else res.send(data)
   })
 })
 
@@ -29,6 +29,10 @@ router.post('/questions/answer', isAuthenticated, async (req, res, next) => {
       else res.send(`The question with id = ${_id} now has the answer ${answer}`)
     }
   })
+})
+
+router.get('/loggedIn', async (req, res) => {
+  res.send(req.session.username)
 })
 
 module.exports = router
